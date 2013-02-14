@@ -14,6 +14,41 @@
     To initialize your local repository using the Spell Checker trees, use a command like this:
           $ git clone https://github.com/TeacaAlex/RushHourSolver.git
     Then:
+          $ cd RushHourSolver/src/
+          $ make
+          $ make run
 
+    "make run" calls "java RushHourSolver in.txt out.txt", where:
+          in.txt = input file contains map to solve;
+          out.txt = output file contains number of moves to solve in.txt, and
+          each move required;
+
+    maps contains 10 examples of input files;
+
+    Encoding map:
+        -a car that can move on direction right/left: "<"("-")*">";
+        -a car that can move on direction up/down: "^"("|")*"v";
+        -RED car is represented using "?";
+        -parking wall is coded with "0";
+        -exit is coded with "*";
+
+    Input file format:
+        -first line: n m
+        -blank line;
+        -next lines represent encoding map
+
+
+    Output file format:
+        -first line: number of moves performed by the nearest exit;
+        -next lines: partial configurations of parking are displayed after each
+        move in part;
+
+    Implementation
+        -solution to the game is to explore the states space using 
+        a search algorithm informed by A*;
+        -each state is uniquely determined by the vector of machines automobiles
+        from Board;
+        -the Heuristic I chose summarizes the number of cars in the path of Red
+        car to the exit with the number of cars that are locked  vertically.
 
 
